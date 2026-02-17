@@ -1,0 +1,293 @@
+{
+  "metadata": {
+    "description": "Tarihsel devletlerin sınır tanımlamaları",
+    "source_file": "ne_10m_admin_1_states_provinces.json",
+    "date_created": "2026-02-16"
+  },
+  
+  "states": {
+    "osmanli": {
+      "name": "Osmanlı İmparatorluğu",
+      "color": "#c8440e",
+      "opacity": 0.65,
+      "stroke": "#3d1a00",
+      "strokeWidth": 1.5,
+      
+      "periods": {
+        "1521": {
+          "description": "Kanuni Sultan Süleyman Dönemi - Mohacs Savaşı Öncesi",
+          "regions": [
+            {
+              "type": "country",
+              "iso_a2": "TR",
+              "description": "Anadolu"
+            },
+            {
+              "type": "country",
+              "iso_a2": "GR",
+              "description": "Yunanistan"
+            },
+            {
+              "type": "country",
+              "iso_a2": "BG",
+              "description": "Bulgaristan"
+            },
+            {
+              "type": "country",
+              "iso_a2": "RS",
+              "description": "Sırbistan"
+            },
+            {
+              "type": "country",
+              "iso_a2": "BA",
+              "description": "Bosna-Hersek"
+            },
+            {
+              "type": "country",
+              "iso_a2": "AL",
+              "description": "Arnavutluk"
+            },
+            {
+              "type": "country",
+              "iso_a2": "MK",
+              "description": "Kuzey Makedonya"
+            },
+            {
+              "type": "provinces",
+              "iso_a2": "RO",
+              "names": ["Dobruja", "Wallachia"],
+              "description": "Romanya'nın bazı bölgeleri"
+            },
+            {
+              "type": "country",
+              "iso_a2": "EG",
+              "description": "Mısır"
+            },
+            {
+              "type": "country",
+              "iso_a2": "SY",
+              "description": "Suriye"
+            },
+            {
+              "type": "country",
+              "iso_a2": "LB",
+              "description": "Lübnan"
+            },
+            {
+              "type": "country",
+              "iso_a2": "IL",
+              "description": "Filistin/İsrail"
+            },
+            {
+              "type": "country",
+              "iso_a2": "JO",
+              "description": "Ürdün"
+            },
+            {
+              "type": "country",
+              "iso_a2": "PS",
+              "description": "Filistin"
+            },
+            {
+              "type": "provinces",
+              "iso_a2": "IQ",
+              "names": ["Baghdad", "Mosul", "Al Başrah"],
+              "description": "Irak'ın bazı bölgeleri"
+            },
+            {
+              "type": "country",
+              "iso_a2": "SA",
+              "regions": ["Hejaz"],
+              "description": "Suudi Arabistan (Hicaz bölgesi)"
+            },
+            {
+              "type": "country",
+              "iso_a2": "TN",
+              "description": "Tunus"
+            },
+            {
+              "type": "country",
+              "iso_a2": "DZ",
+              "description": "Cezayir"
+            },
+            {
+              "type": "country",
+              "iso_a2": "LY",
+              "description": "Libya"
+            },
+            {
+              "type": "country",
+              "iso_a2": "HU",
+              "description": "Macaristan'ın güney kısımları (henüz tam değil)"
+            }
+          ]
+        },
+        
+        "1683": {
+          "description": "II. Viyana Kuşatması Dönemi - En Geniş Sınırlar",
+          "regions": [
+            {
+              "type": "extend",
+              "base": "1521",
+              "add": [
+                {
+                  "type": "country",
+                  "iso_a2": "HU",
+                  "description": "Macaristan (tamamı)"
+                },
+                {
+                  "type": "country",
+                  "iso_a2": "HR",
+                  "description": "Hırvatistan"
+                },
+                {
+                  "type": "provinces",
+                  "iso_a2": "UA",
+                  "names": ["Crimea"],
+                  "description": "Kırım"
+                },
+                {
+                  "type": "provinces",
+                  "iso_a2": "RO",
+                  "names": ["Moldavia"],
+                  "description": "Eflak ve Boğdan"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    
+    "safevi": {
+      "name": "Safevi Devleti",
+      "color": "#1a5c8b",
+      "opacity": 0.65,
+      "stroke": "#001a2d",
+      "strokeWidth": 1.5,
+      
+      "periods": {
+        "1521": {
+          "description": "Şah İsmail Dönemi",
+          "regions": [
+            {
+              "type": "country",
+              "iso_a2": "IR",
+              "description": "İran"
+            },
+            {
+              "type": "country",
+              "iso_a2": "AZ",
+              "description": "Azerbaycan"
+            },
+            {
+              "type": "provinces",
+              "iso_a2": "IQ",
+              "names": ["Kurdistan", "Sulaymaniyah"],
+              "description": "Irak'ın doğu bölgeleri"
+            }
+          ]
+        }
+      }
+    },
+    
+    "macar": {
+      "name": "Macar Krallığı",
+      "color": "#8b1a1a",
+      "opacity": 0.65,
+      "stroke": "#2d0000",
+      "strokeWidth": 1.5,
+      
+      "periods": {
+        "1521": {
+          "description": "II. Lajos Dönemi - Mohacs Öncesi",
+          "regions": [
+            {
+              "type": "country",
+              "iso_a2": "HU",
+              "description": "Macaristan"
+            },
+            {
+              "type": "country",
+              "iso_a2": "SK",
+              "description": "Slovakya"
+            },
+            {
+              "type": "provinces",
+              "iso_a2": "HR",
+              "names": ["Slavonia"],
+              "description": "Hırvatistan'ın bazı kısımları"
+            }
+          ]
+        }
+      }
+    },
+    
+    "habsbur": {
+      "name": "Habsburg İmparatorluğu",
+      "color": "#2d5c2d",
+      "opacity": 0.65,
+      "stroke": "#0d2d0d",
+      "strokeWidth": 1.5,
+      
+      "periods": {
+        "1521": {
+          "description": "I. Karl (V. Karl) Dönemi",
+          "regions": [
+            {
+              "type": "country",
+              "iso_a2": "AT",
+              "description": "Avusturya"
+            },
+            {
+              "type": "country",
+              "iso_a2": "CZ",
+              "description": "Çekya"
+            },
+            {
+              "type": "country",
+              "iso_a2": "SI",
+              "description": "Slovenya"
+            },
+            {
+              "type": "country",
+              "iso_a2": "BE",
+              "description": "Belçika"
+            },
+            {
+              "type": "country",
+              "iso_a2": "NL",
+              "description": "Hollanda"
+            },
+            {
+              "type": "country",
+              "iso_a2": "LU",
+              "description": "Lüksemburg"
+            }
+          ]
+        },
+        "1683": {
+          "description": "I. Leopold Dönemi",
+          "regions": [
+            {
+              "type": "extend",
+              "base": "1521",
+              "remove": ["BE", "NL", "LU"]
+            }
+          ]
+        }
+      }
+    }
+  },
+  
+  "years": {
+    "1521": {
+      "description": "Rönesans Dönemi - Osmanlı'nın Yükselişi",
+      "states": ["osmanli", "safevi", "macar", "habsbur"]
+    },
+    "1683": {
+      "description": "II. Viyana Kuşatması",
+      "states": ["osmanli", "habsbur"]
+    }
+  }
+}
