@@ -38,6 +38,7 @@ const SOURCE_ID = 'tarihi';
 const FILL_ID   = 'tarihi-fill';
 const HOVER_ID  = 'tarihi-hover';
 const STROKE_ID = 'tarihi-stroke';
+const LABEL_ID = 'tarihi-label';
 
 function firstSymbol(map) {
   const layers = map.getStyle()?.layers ?? [];
@@ -68,10 +69,10 @@ export default function TarihselHarita() {
   const [sidebarOpen,  setSidebarOpen]  = useState(true);
   const [selected,     setSelected]     = useState(null);
 
-  const styleUrl = useCallback(
-    (styleId) => `https://api.maptiler.com/maps/${styleId}/style.json?key=${apiKey}`,
-    [apiKey]
-  );
+const styleUrl = useCallback(
+    (styleId) => `https://api.maptiler.com/maps/${styleId}/style.json?key=${apiKey}&fresh=${Date.now()}`,
+    [apiKey]
+  );
 
   const injectLayers = useCallback((map) => {
     [HOVER_ID, STROKE_ID, FILL_ID].forEach(id => {
@@ -99,25 +100,25 @@ export default function TarihselHarita() {
     }, before);
 
     // ─── SINIRLARI GÜNCELLEDİĞİMİZ KISIM BAŞLANGIÇ ───────────────────────────
-    map.addLayer({
-      id: STROKE_ID, type: 'line', source: SOURCE_ID,
-      layout: {
-        'line-join': 'round', // Köşeleri yuvarlatır, daha düzgün görünür
-        'line-cap': 'round'   // Çizgi uçlarını yuvarlatır
-      },
-      paint: {
-        // Rengi sabitledik: Koyu kahverengi/siyah tonu, tarihi harita için ideal
-        'line-color':   '#3d2b1f',
-        // Kalınlığı artırdık: Uzakta 1.5px, yakında 4.5px
-        'line-width':   [
-          'interpolate', ['linear'], ['zoom'],
-          3, 1.5,  // Zoom 3'te kalınlık 1.5px
-          9, 4.5   // Zoom 9'da kalınlık 4.5px
-        ],
-        // Opaklığı 1 (tam net) yaptık
-        'line-opacity': 1,
-      },
-    }, before);
+    // ─── SINIRLARI ÇOK DAHA İNCE YAPTIĞIMIZ KISIM ───────────────────────────
+map.addLayer({
+  id: STROKE_ID, type: 'line', source: SOURCE_ID,
+  layout: {
+    'line-join': 'round', // Köşeler yuvarlak dönüşlü
+    'line-cap': 'round'   // Çizgi uçları yuvarlak
+  },
+  paint: {
+    'line-color': '#3d2b1f', // Koyu kahverengi renk
+    // Kalınlığı iyice incelttik:
+    'line-width': [
+      'interpolate', ['linear'], ['zoom'],
+      3, 0.5,  // Uzaktan bakınca (Zoom 3) yarım piksel (çok ince)
+      10, 1.2  // Yaklaşınca (Zoom 10) 1.2 piksel (hala ince ve zarif)
+    ],
+    'line-opacity': 0.9, // Çok hafif bir şeffaflık ile keskinliği yumuşattık
+  },
+}, before);
+// ─── BİTİŞ ────────────────────────────────────────────────────────────── , before);
     // ─── SINIRLARI GÜNCELLEDİĞİMİZ KISIM BİTİŞ ──────────────────────────────
 
     map.on('mousemove', FILL_ID, (e) => {
