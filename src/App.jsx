@@ -80,6 +80,7 @@ const SOURCE_ID = 'tarihi';
 const FILL_ID   = 'tarihi-fill';
 const HOVER_ID  = 'tarihi-hover';
 const STROKE_ID = 'tarihi-stroke';
+const LABEL_ID = 'tarihi-label';
 
 function firstSymbol(map) {
   const layers = map.getStyle()?.layers ?? [];
@@ -108,6 +109,10 @@ export default function TarihselHarita() {
   // ZAMAN ÇİZELGESİ STATE'İ
   const [yearIndex, setYearIndex] = useState(0); 
   const currentYear = YEARS[yearIndex];
+const styleUrl = useCallback(
+    (styleId) => `https://api.maptiler.com/maps/${styleId}/style.json?key=${apiKey}&fresh=${Date.now()}`,
+    [apiKey]
+  );
 
   // Seçili yıla ait veriyi MapLibre'nin anlayacağı formata (ID ekleyerek) getiriyoruz
   const currentGeoJson = useMemo(() => {
@@ -117,11 +122,6 @@ export default function TarihselHarita() {
       features: rawData.features.map((f, i) => ({ ...f, id: i }))
     };
   }, [currentYear]);
-
-  const styleUrl = useCallback(
-    (styleId) => `https://api.maptiler.com/maps/${styleId}/style.json?key=${apiKey}&fresh=${Date.now()}`,
-    [apiKey]
-  );
 
 const injectLayers = useCallback((map, geoData) => {
     // Katmanları temizle (Önceki tint katmanını da ekleyelim)
@@ -166,6 +166,27 @@ const injectLayers = useCallback((map, geoData) => {
         'fill-opacity': ['coalesce', ['get', 'fillOpacity'], 0.45], 
       },
     }, before);
+    // ─── SINIRLARI GÜNCELLEDİĞİMİZ KISIM BAŞLANGIÇ ───────────────────────────
+    // ─── SINIRLARI ÇOK DAHA İNCE YAPTIĞIMIZ KISIM ───────────────────────────
+map.addLayer({
+  id: STROKE_ID, type: 'line', source: SOURCE_ID,
+  layout: {
+    'line-join': 'round', // Köşeler yuvarlak dönüşlü
+    'line-cap': 'round'   // Çizgi uçları yuvarlak
+  },
+  paint: {
+    'line-color': '#3d2b1f', // Koyu kahverengi renk
+    // Kalınlığı iyice incelttik:
+    'line-width': [
+      'interpolate', ['linear'], ['zoom'],
+      3, 0.5,  // Uzaktan bakınca (Zoom 3) yarım piksel (çok ince)
+      10, 1.2  // Yaklaşınca (Zoom 10) 1.2 piksel (hala ince ve zarif)
+    ],
+    'line-opacity': 0.9, // Çok hafif bir şeffaflık ile keskinliği yumuşattık
+  },
+}, before);
+// ─── BİTİŞ ────────────────────────────────────────────────────────────── , before);
+    // ─── SINIRLARI GÜNCELLEDİĞİMİZ KISIM BİTİŞ ──────────────────────────────
 
     // 🌟 GÜNCELLENMİŞ: "HOVER" (HOVER_ID) KATMANI 🌟
     // Şeffaflığı 0.1'e düşürdük. Üzerine gelince hafifçe parlamasını sağlar.
